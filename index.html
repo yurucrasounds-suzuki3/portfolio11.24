@@ -56,6 +56,7 @@
       }
 
       .hero-card{background:linear-gradient(180deg,rgba(255,255,255,0.03),transparent);padding:32px;border-radius:var(--radius);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.04)}
+      .hero-illustration{width:100%;height:180px;object-fit:cover;border-radius:12px;margin-bottom:14px;display:block}
 
       .eyebrow{display:inline-block;color:var(--accent);font-weight:700;font-size:13px;margin-bottom:10px}
       h1{font-size:36px;margin:0 0 12px;line-height:1.05}
@@ -72,13 +73,15 @@
         display:flex;flex-direction:column;gap:14px
       }
       .profile-top{display:flex;gap:14px;align-items:center}
-      .avatar{width:88px;height:88px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#04102a}
+      .avatar{width:88px;height:88px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#04102a;background:linear-gradient(135deg,var(--accent),var(--accent-2))}
+      .avatar-img{width:88px;height:88px;border-radius:14px;object-fit:cover;border:2px solid rgba(255,255,255,0.04)}
       .meta .name{font-weight:800;font-size:18px}
       .meta .role{font-size:13px;color:var(--muted)}
 
       /* Projects */
       .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:22px}
       .project{background:var(--panel);padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03)}
+      .project-thumb{width:100%;height:120px;object-fit:cover;border-radius:10px;margin-bottom:10px}
       .project h3{margin:0 0 8px;font-size:16px}
       .project p{margin:0;color:var(--text);font-size:13px}
 
@@ -116,6 +119,18 @@
       <main>
         <div class="hero">
           <div class="hero-card">
+            <svg class="hero-illustration" width="100%" height="180" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <lineargradient id="g" x1="0" x2="1">
+                  <stop offset="0" stop-color="#6c8cff"/>
+                  <stop offset="1" stop-color="#ff8a5b"/>
+                </lineargradient>
+              </defs>
+              <rect width="1200" height="600" fill="url(#g)" rx="12" />
+              <g opacity="0.12"><circle cx="180" cy="120" r="120" fill="#081528"/></g>
+              <g fill="#ffffff" opacity="0.12"><rect x="120" y="320" width="360" height="160" rx="12"/><rect x="520" y="240" width="560" height="220" rx="12"/></g>
+              <text x="60" y="80" font-family="Arial,Helvetica,sans-serif" font-size="42" fill="#ffffff" opacity="0.95">Yurucra Studio</text>
+            </svg>
             <span class="eyebrow">ゆるくクラフト</span>
             <h1><strong>ゆるくら</strong> の学びと制作のポートフォリオ</h1>
             <p class="lead">家庭時間を大切にしつつ、日常の“小さな困りごと”を解決するアプリを少しずつ作っています。ひらがな練習・家計サポートなど、親子に優しいプロダクトがテーマ。</p>
@@ -127,10 +142,20 @@
 
             <div class="projects" style="margin-top:22px">
               <div class="project">
+                <svg class="project-thumb" width="100%" height="120" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect width="600" height="400" rx="12" fill="#a3d9ff"/>
+                  <g transform="translate(40,40)"><rect width="220" height="120" rx="12" fill="#4c6fff"/></g>
+                  <text x="300" y="220" font-family="Arial,Helvetica,sans-serif" font-size="40" fill="#041426" text-anchor="middle">DINO</text>
+                </svg>
                 <h3>ひらがな練習アプリ（恐竜テーマ）</h3>
                 <p>指でなぞって学べる子ども向けアプリ。練習でカードが増える仕組みを検討中。</p>
               </div>
               <div class="project">
+                <svg class="project-thumb" width="100%" height="120" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect width="600" height="400" rx="12" fill="#ffd9c2"/>
+                  <g fill="#041426" opacity="0.95"><circle cx="120" cy="200" r="40"/><rect x="220" y="160" width="220" height="80" rx="10"/></g>
+                  <text x="300" y="240" font-family="Arial,Helvetica,sans-serif" font-size="30" fill="#041426" text-anchor="middle">FOOD</text>
+                </svg>
                 <h3>食わず嫌い克服アプリ（構想）</h3>
                 <p>一口チャレンジで記録し、成長要素で親子のモチベーションを支援。</p>
               </div>
@@ -139,7 +164,15 @@
 
           <aside class="profile">
             <div class="profile-top">
-              <div class="avatar">YK</div>
+              <svg class="avatar-img" width="88" height="88" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <lineargradient id="a" x1="0" x2="1"><stop offset="0" stop-color="#6c8cff"/><stop offset="1" stop-color="#ff8a5b"/></lineargradient>
+                </defs>
+                <rect width="200" height="200" rx="18" fill="url(#a)"/>
+                <circle cx="100" cy="78" r="34" fill="#fff" opacity="0.95"/>
+                <rect x="36" y="122" width="128" height="42" rx="8" fill="#fff" opacity="0.95"/>
+                <text x="100" y="86" font-size="24" font-family="Arial,Helvetica,sans-serif" fill="#041226" text-anchor="middle" font-weight="700">YK</text>
+              </svg>
               <div class="meta">
                 <div class="name">すずきⅢ（Yurucra）</div>
                 <div class="role">Web / App 学習中 • 家庭と制作を両立</div>
