@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ゆるくらポートフォリオ</title>
+
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --card: #ffffff;
+      --accent: #4c6fff;
+      --accent-soft: #e2e7ff;
+      --text-main: #1f2933;
+      --text-sub: #6b7280;
+      --border-soft: #e5e7eb;
+      --radius-xl: 18px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+        "Segoe UI", system-ui, sans-serif;
+      background: radial-gradient(circle at top left, #e0f2fe, #f9fafb 45%, #e5e7eb);
+      color: var(--text-main);
+    }
+
+    .wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 16px 56px;
+    }
+
+    /* ヘッダー */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.08em;
+    }
+
+    .logo span {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      margin-left: 6px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    nav a {
+      font-size: 14px;
+      color: var(--text-sub);
+      text-decoration: none;
+      margin-left: 16px;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    /* ヒーロー */
+    .hero {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 24px;
+      padding: 28px 20px;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
+      gap: 20px;
+      align-items: center;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-title {
+      font-size: 26px;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .hero-title strong {
+      background: linear-gradient(120deg, #4c6fff, #f97316);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-tagline {
+      font-size: 14px;
+      color: var(--text-sub);
+      margin-bottom: 20px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: #f9fafb;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 10px 16px;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 14px 30px rgba(76, 111, 255, 0.45);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: white;
+      color: var(--text-main);
+      border: 1px solid var(--border-soft);
+    }
+
+    .btn-ghost:hover {
+      background: #f3f4f6;
+    }
+
+    .hero-right {
+      justify-self: center;
+    }
+
+    .hero-card {
+      width: 230px;
+      aspect-ratio: 3 / 4;
+      border-radius: 26px;
+      background: conic-gradient(
+          from 220deg,
+          rgba(76, 111, 255, 0.1),
+          rgba(244, 114, 182, 0.15),
+          rgba(59, 130, 246, 0.2),
+          rgba(52, 211, 153, 0.2)
+        ),
+        #020617;
+      padding: 14px 14px 18px;
+      box-shadow: 0 16px 55px rgba(15, 23, 42, 0.75);
+      color: #e5e7eb;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-inner {
+      border-radius: 22px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 14px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      backdrop-filter: blur(20px);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.9));
+    }
+
+    .hero-card-title {
+      font-size: 12px;
+      color: #cbd5f5;
+      margin-bottom: 4px;
+    }
+
+    .hero-card-main {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .hero-card-sub {
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .hero-card-tag {
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.9);
+      align-self: flex-start;
+      margin-top: 6px;
+    }
+
+    .hero-card-bottom {
+      font-size: 10px;
+      color: #9ca3af;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hero-card-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px #22c55e;
+    }
+
+    /* メインセクション */
+    section {
+      margin-top: 32px;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .section-desc {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 18px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius-xl);
+      padding: 14px 16px;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .card-text {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 11px;
+    }
+
+    .chip {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 11px;
+      color: #9ca3af;
+      text-align: center;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 720px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      nav {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      nav a {
+        margin: 0;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 22px 18px;
+      }
+
+      .hero-title {
+        font-size: 22px;
+      }
+
+      .hero-right {
+        justify-self: flex-start;
+      }
+
+      .hero-card {
+        width: 100%;
+        max-width: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <div class="logo">
+        Yurucra <span>portfolio</span>
+      </div>
+      <nav>
+        <a href="#about">ABOUT</a>
+        <a href="#works">WORKS</a>
+        <a href="#contact">CONTACT</a>
+      </nav>
+    </header>
+
+    <!-- ヒーロー -->
+    <main>
+      <section class="hero">
+        <div>
+          <p class="hero-tagline">アラフォーから始める “ゆるくクラフトする” プログラミング記録。</p>
+          <h1 class="hero-title">
+            <strong>ゆるくら</strong> の<br />
+            学びと制作のポートフォリオ
+          </h1>
+
+          <div class="hero-badges">
+            <span class="badge">
+              <span class="badge-dot"></span> Day21 Git管理中
+            </span>
+            <span class="badge">HTML / CSS / JavaScript</span>
+            <span class="badge">FlutterFlow にも挑戦予定</span>
+          </div>
+
+          <div class="hero-buttons">
+            <a href="#works" class="btn-primary">制作物を見る →</a>
+            <a href="#about" class="btn-ghost">自己紹介</a>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-card">
+            <div class="hero-card-inner">
+              <div>
+                <div class="hero-card-title">Current Mission</div>
+                <div class="hero-card-main">家庭の“小さな困りごと”を<br />アプリで解決する。</div>
+                <div class="hero-card-sub">
+                  ひらがな練習アプリ / 食わず嫌い克服アプリ / 家計簿支援ツール など、
+                  日常に役立つツールを少しずつカタチにしています。
+                </div>
+                <div class="hero-card-tag">Yurucra Lab</div>
+              </div>
+
+              <div class="hero-card-bottom">
+                <span>次のアップデート：Day22</span>
+                <span class="hero-card-dot"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about">
+        <h2>ABOUT</h2>
+        <p class="section-desc">
+          はじめまして、すずきIII です。<br />
+          家庭の時間を大事にしながら、Web制作やアプリ開発を学び中のアラフォー会社員です。
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <div class="card-title">プロフィール</div>
+            <p class="card-text">
+              北海道出身。ラーメンと音楽とキャンプが好き。<br />
+              「ママがゆる〜く暮らせる世界」をテーマに、子育てや家計の“小さな困りごと”を解決するプロダクトを作っています。
+            </p>
+            <div class="chip-row">
+              <span class="chip">Web初学者</span>
+              <span class="chip">SUNABACO受講中</span>
+              <span class="chip">一児の父</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORKS -->
+      <section id="works">
+        <h2>WORKS（仮）</h2>
+        <p class="section-desc">
+          ここに、これから作るアプリやWebサイトを少しずつ追加していきます。<br />
+          Git管理の練習も兼ねて、更新のたびに commit / push していく予定。
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <div class="card-title">ひらがな練習アプリ（恐竜テーマ）</div>
+            <p class="card-text">
+              4歳の息子向けに作っている、指でなぞって練習できるひらがなアプリ。<br />
+              練習すると恐竜カードのガチャが引ける仕様を計画中。
+            </p>
+            <div class="chip-row">
+              <span class="chip">HTML / CSS / JS</span>
+              <span class="chip">子ども向け</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">食わず嫌い克服アプリ（構想中）</div>
+            <p class="card-text">
+              「一口チャレンジ」を記録して、食べられた回数に応じてキャラクターが成長するアプリの構想メモ。
+            </p>
+            <div class="chip-row">
+              <span class="chip">アイデア段階</span>
+              <span class="chip">親子で使う</span>
+            </div>
+          </div>
+        </div>
+      </section
