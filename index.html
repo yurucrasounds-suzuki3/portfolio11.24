@@ -7,14 +7,20 @@
     <meta name="description" content="ゆるくら（Yurucra）の学びと制作のポートフォリオ。家庭の“小さな困りごと”をアプリで解決する制作記録。" />
 
     <style>
+      @keyframes neon-glow {0%{text-shadow:0 0 10px currentColor;filter:brightness(1.2)}50%{text-shadow:0 0 20px currentColor;filter:brightness(1.4)}100%{text-shadow:0 0 10px currentColor;filter:brightness(1.2)}}
+      @keyframes grid-move {0%{background-position:0 0}100%{background-position:100px 100px}}
+      @keyframes float-y {0%,100%{transform:translateY(0px)}50%{transform:translateY(-8px)}}
+      @keyframes glow-box {0%,100%{box-shadow:0 0 10px rgba(0,217,255,0.3),inset 0 0 10px rgba(0,217,255,0.05)}50%{box-shadow:0 0 25px rgba(0,217,255,0.7),inset 0 0 20px rgba(0,217,255,0.1)}}
+
       :root{
-        --bg:#0f1724;
-        --panel:#0b1220;
+        --bg:#050a15;
+        --panel:#0a1020;
         --text: #e9f4ff; /* メインテキスト（高コントラスト） */
-        --muted:#c0d8f2; /* 補助テキスト（読みやすく調整） */
-        --accent:#6c8cff;
-        --accent-2:#ff8a5b;
-        --glass: rgba(255,255,255,0.06);
+        --muted:#a0c4ff; /* 補助テキスト（読みやすく調整） */
+        --accent:#00d9ff;
+        --accent-2:#ff006e;
+        --accent-3:#00f5ff;
+        --glass: rgba(0,217,255,0.04);
         --radius:16px;
         --max-width:1100px;
       }
@@ -36,6 +42,10 @@
         margin:0;
         font-family: "Hiragino Kaku Gothic ProN","Helvetica Neue",Helvetica,Arial,sans-serif;
         background:var(--bg);
+        background-image:linear-gradient(0deg,transparent 24%,rgba(0,217,255,0.04) 25%,rgba(0,217,255,0.04) 26%,transparent 27%,transparent 74%,rgba(0,217,255,0.04) 75%,rgba(0,217,255,0.04) 76%,transparent 77%,transparent),linear-gradient(90deg,transparent 24%,rgba(0,217,255,0.04) 25%,rgba(0,217,255,0.04) 26%,transparent 27%,transparent 74%,rgba(0,217,255,0.04) 75%,rgba(0,217,255,0.04) 76%,transparent 77%,transparent);
+        background-size:100px 100px;
+        background-position:0 0;
+        animation:grid-move 20s linear infinite;
         color:var(--text);
         -webkit-font-smoothing:antialiased;
       }
@@ -45,28 +55,32 @@
       header{display:flex;align-items:center;justify-content:space-between;gap:16px}
       .brand{display:flex;align-items:center;gap:12px}
       .logo{font-weight:800;letter-spacing:0.02em}
-      .logo .tag{font-size:12px;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#081226;font-weight:700;margin-left:6px}
+      .logo .tag{font-size:12px;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,#00d9ff,#ff006e);color:#050a15;font-weight:700;margin-left:6px;box-shadow:0 0 15px rgba(0,217,255,0.5);animation:glow-box 3s ease-in-out infinite}
 
-      nav a{color:var(--text);text-decoration:none;margin-left:18px;font-weight:600;font-size:14px}
+      nav a{color:var(--text);text-decoration:none;margin-left:18px;font-weight:600;font-size:14px;position:relative;transition:color 0.3s ease}
+      nav a:after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width 0.3s ease}
       nav a:hover{color:var(--accent)}
+      nav a:hover:after{width:100%}
 
       /* Hero */
       .hero{
         display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:22px;
       }
 
-      .hero-card{background:linear-gradient(180deg,rgba(255,255,255,0.03),transparent);padding:32px;border-radius:var(--radius);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.04)}
+      .hero-card{background:linear-gradient(135deg,rgba(0,217,255,0.05),rgba(255,0,110,0.02));padding:32px;border-radius:var(--radius);backdrop-filter:blur(12px);border:1.5px solid rgba(0,217,255,0.2);box-shadow:0 0 30px rgba(0,217,255,0.1),inset 0 0 20px rgba(0,217,255,0.05);animation:glow-box 4s ease-in-out infinite}
       .hero-illustration{width:100%;height:180px;object-fit:cover;border-radius:12px;margin-bottom:14px;display:block}
 
-      .eyebrow{display:inline-block;color:var(--accent);font-weight:700;font-size:13px;margin-bottom:10px}
-      h1{font-size:36px;margin:0 0 12px;line-height:1.05}
-      h1 strong{background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+      .eyebrow{display:inline-block;color:var(--accent-3);font-weight:700;font-size:13px;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.15em;animation:neon-glow 2s ease-in-out infinite}
+      h1{font-size:36px;margin:0 0 12px;line-height:1.05;letter-spacing:-0.02em}
+      h1 strong{background:linear-gradient(90deg,#00d9ff,#ff006e);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 20px rgba(0,217,255,0.3)}
       p.lead{color:var(--text);margin:0 0 18px}
 
       .ctas{display:flex;gap:12px;margin-top:10px}
       .btn{padding:12px 18px;border-radius:999px;font-weight:700;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
-      .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#04102a;box-shadow:0 12px 30px rgba(108,140,255,0.2)}
-      .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+      .btn-primary{background:linear-gradient(90deg,#00d9ff,#ff006e);color:#050a15;box-shadow:0 0 20px rgba(0,217,255,0.4);border:1px solid rgba(0,217,255,0.5);transition:all 0.3s ease;animation:glow-box 2.5s ease-in-out infinite}
+      .btn-primary:hover{transform:scale(1.05);box-shadow:0 0 30px rgba(0,217,255,0.6)}
+      .btn-ghost{background:transparent;border:1.5px solid rgba(0,217,255,0.3);color:var(--muted);transition:all 0.3s ease}
+      .btn-ghost:hover{background:rgba(0,217,255,0.1);border-color:rgba(0,217,255,0.6);box-shadow:0 0 15px rgba(0,217,255,0.2)}
 
       /* Profile panel */
       .profile{
@@ -74,13 +88,14 @@
       }
       .profile-top{display:flex;gap:14px;align-items:center}
       .avatar{width:88px;height:88px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#04102a;background:linear-gradient(135deg,var(--accent),var(--accent-2))}
-      .avatar-img{width:88px;height:88px;border-radius:14px;object-fit:cover;border:2px solid rgba(255,255,255,0.04)}
+      .avatar-img{width:88px;height:88px;border-radius:14px;object-fit:cover;border:2px solid rgba(0,217,255,0.4);box-shadow:0 0 20px rgba(0,217,255,0.3);animation:float-y 3s ease-in-out infinite}
       .meta .name{font-weight:800;font-size:18px}
       .meta .role{font-size:13px;color:var(--muted)}
 
       /* Projects */
       .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:22px}
-      .project{background:var(--panel);padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03)}
+      .project{background:linear-gradient(135deg,rgba(0,217,255,0.03),rgba(255,0,110,0.01));padding:18px;border-radius:14px;border:1px solid rgba(0,217,255,0.2);transition:all 0.3s ease;cursor:pointer}
+      .project:hover{transform:translateY(-4px);border-color:rgba(0,217,255,0.5);box-shadow:0 0 20px rgba(0,217,255,0.2);background:linear-gradient(135deg,rgba(0,217,255,0.08),rgba(255,0,110,0.03))}
       .project-thumb{width:100%;height:120px;object-fit:cover;border-radius:10px;margin-bottom:10px}
       .project h3{margin:0 0 8px;font-size:16px}
       .project p{margin:0;color:var(--text);font-size:13px}
@@ -90,7 +105,8 @@
       .section-title{display:flex;align-items:center;gap:12px}
       .section-title h2{margin:0;font-size:18px}
 
-      footer{text-align:center;color:var(--muted);margin:40px 0 10px;font-size:13px}
+      footer{text-align:center;color:var(--muted);margin:40px 0 10px;font-size:13px;letter-spacing:0.05em}
+      footer strong{color:var(--accent);text-shadow:0 0 10px rgba(0,217,255,0.3)}
 
       /* Responsive */
       @media (max-width:980px){.hero{grid-template-columns:1fr 320px}}
@@ -122,14 +138,14 @@
             <svg class="hero-illustration" width="100%" height="180" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <defs>
                 <lineargradient id="g" x1="0" x2="1">
-                  <stop offset="0" stop-color="#6c8cff"/>
-                  <stop offset="1" stop-color="#ff8a5b"/>
+                  <stop offset="0" stop-color="#00d9ff"/>
+                  <stop offset="1" stop-color="#ff006e"/>
                 </lineargradient>
               </defs>
-              <rect width="1200" height="600" fill="url(#g)" rx="12" />
-              <g opacity="0.12"><circle cx="180" cy="120" r="120" fill="#081528"/></g>
-              <g fill="#ffffff" opacity="0.12"><rect x="120" y="320" width="360" height="160" rx="12"/><rect x="520" y="240" width="560" height="220" rx="12"/></g>
-              <text x="60" y="80" font-family="Arial,Helvetica,sans-serif" font-size="42" fill="#ffffff" opacity="0.95">Yurucra Studio</text>
+              <rect width="1200" height="600" fill="#050a15" />
+              <g opacity="0.08"><circle cx="180" cy="120" r="120" fill="#00d9ff"/></g>
+              <g fill="#00d9ff" opacity="0.15"><rect x="120" y="320" width="360" height="160" rx="12"/><rect x="520" y="240" width="560" height="220" rx="12"/></g>
+              <text x="60" y="80" font-family="Arial,Helvetica,sans-serif" font-size="48" font-weight="700" fill="#00d9ff" opacity="1">Yurucra Studio</text>
             </svg>
             <span class="eyebrow">ゆるくクラフト</span>
             <h1><strong>ゆるくら</strong> の学びと制作のポートフォリオ</h1>
@@ -143,18 +159,22 @@
             <div class="projects" style="margin-top:22px">
               <div class="project">
                 <svg class="project-thumb" width="100%" height="120" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <rect width="600" height="400" rx="12" fill="#a3d9ff"/>
-                  <g transform="translate(40,40)"><rect width="220" height="120" rx="12" fill="#4c6fff"/></g>
-                  <text x="300" y="220" font-family="Arial,Helvetica,sans-serif" font-size="40" fill="#041426" text-anchor="middle">DINO</text>
+                  <rect width="600" height="400" rx="12" fill="#050a15"/>
+                  <rect x="0" y="0" width="600" height="400" rx="12" fill="url(#dinograd)" opacity="0.6"/>
+                  <g transform="translate(40,40)"><rect width="220" height="120" rx="12" fill="#00d9ff" opacity="0.3"/></g>
+                  <text x="300" y="220" font-family="Arial,Helvetica,sans-serif" font-size="48" font-weight="700" fill="#00d9ff" text-anchor="middle">DINO</text>
+                  <defs><lineargradient id="dinograd" x1="0" x2="1"><stop offset="0" stop-color="#00d9ff"/><stop offset="1" stop-color="#ff006e"/></lineargradient></defs>
                 </svg>
                 <h3>ひらがな練習アプリ（恐竜テーマ）</h3>
                 <p>指でなぞって学べる子ども向けアプリ。練習でカードが増える仕組みを検討中。</p>
               </div>
               <div class="project">
                 <svg class="project-thumb" width="100%" height="120" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <rect width="600" height="400" rx="12" fill="#ffd9c2"/>
-                  <g fill="#041426" opacity="0.95"><circle cx="120" cy="200" r="40"/><rect x="220" y="160" width="220" height="80" rx="10"/></g>
-                  <text x="300" y="240" font-family="Arial,Helvetica,sans-serif" font-size="30" fill="#041426" text-anchor="middle">FOOD</text>
+                  <rect width="600" height="400" rx="12" fill="#050a15"/>
+                  <rect x="0" y="0" width="600" height="400" rx="12" fill="url(#foodgrad)" opacity="0.5"/>
+                  <g fill="#ff006e" opacity="0.4"><circle cx="120" cy="200" r="50"/><rect x="220" y="160" width="220" height="80" rx="10"/></g>
+                  <text x="300" y="240" font-family="Arial,Helvetica,sans-serif" font-size="48" font-weight="700" fill="#ff006e" text-anchor="middle">FOOD</text>
+                  <defs><lineargradient id="foodgrad" x1="0" x2="1"><stop offset="0" stop-color="#ff006e"/><stop offset="1" stop-color="#00d9ff"/></lineargradient></defs>
                 </svg>
                 <h3>食わず嫌い克服アプリ（構想）</h3>
                 <p>一口チャレンジで記録し、成長要素で親子のモチベーションを支援。</p>
@@ -166,12 +186,12 @@
             <div class="profile-top">
               <svg class="avatar-img" width="88" height="88" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <defs>
-                  <lineargradient id="a" x1="0" x2="1"><stop offset="0" stop-color="#6c8cff"/><stop offset="1" stop-color="#ff8a5b"/></lineargradient>
+                  <lineargradient id="a" x1="0" x2="1"><stop offset="0" stop-color="#00d9ff"/><stop offset="1" stop-color="#ff006e"/></lineargradient>
                 </defs>
                 <rect width="200" height="200" rx="18" fill="url(#a)"/>
-                <circle cx="100" cy="78" r="34" fill="#fff" opacity="0.95"/>
-                <rect x="36" y="122" width="128" height="42" rx="8" fill="#fff" opacity="0.95"/>
-                <text x="100" y="86" font-size="24" font-family="Arial,Helvetica,sans-serif" fill="#041226" text-anchor="middle" font-weight="700">YK</text>
+                <circle cx="100" cy="78" r="34" fill="#050a15" opacity="0.8"/>
+                <rect x="36" y="122" width="128" height="42" rx="8" fill="#050a15" opacity="0.8"/>
+                <text x="100" y="86" font-size="28" font-family="Arial,Helvetica,sans-serif" fill="#00d9ff" text-anchor="middle" font-weight="700">YK</text>
               </svg>
               <div class="meta">
                 <div class="name">すずきⅢ（Yurucra）</div>
